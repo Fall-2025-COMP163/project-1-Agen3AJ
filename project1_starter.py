@@ -133,7 +133,7 @@ def display_character(character):
     """
     if not character:
         print("Error: No character data to display.")
-        return
+        return None
 
     print("\n=== CHARACTER SHEET ===")
     print(f"Name: {character.get('name', 'N/A')}")
@@ -144,8 +144,6 @@ def display_character(character):
     print(f"Health: {character.get('health', 'N/A')}")
     print(f"Gold: {character.get('gold', 'N/A')}")
     print("=======================\n")
-    # TODO: Implement this function
-    pass
 
 def level_up(character):
     """
