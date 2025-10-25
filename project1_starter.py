@@ -162,34 +162,35 @@ def level_up(character):
 
 # Main program area (optional - for testing your functions
 if __name__ == "__main__":
-        test_filename = "my_character.txt"
-        print("=== CHARACTER CREATOR ===")
-        print("Test your functions here!")
+    test_filename = "my_character.txt"
+    print("=== CHARACTER CREATOR ===")
+    print("Test your functions here!")
     
-    # Example usage:
-        char = create_character("TestHero", "Warrior")
-        display_character(char)
+    char = create_character("TestHero", "Warrior")
+    display_character(char)
     
-        print(f"Attempting to save character to {test_filename} (No error handling for OS errors)...")
-        save_character(char, test_filename)
-    
-        print(f"\nAttempting to load character from {test_filename}...")
+    # Check if save was successful before trying to load
+    save_successful = save_character(char, test_filename)
+
+    # Move the loading logic entirely inside a successful path
+    if save_successful:
         loaded = load_character(test_filename)
     
-if loaded:
-    print("Load successful. Displaying loaded character:")
-    display_character(loaded)
-        
-    level_up(loaded)
-    print("Character leveled up:")
-    display_character(loaded)
-        
-        # Clean up the test file
-    if  os.path.exists(test_filename):
-        os.remove(test_filename)
-        print(f"\nCleaned up test file: {test_filename}")
-else:
-    print("Load failed (File not found).")
+        if loaded:
+            print("\nLoaded character:")
+            display_character(loaded)
+            
+            level_up(loaded)
+            print("Leveled Up character:")
+            display_character(loaded)
+            
+            # Clean up the test file
+            if os.path.exists(test_filename):
+                os.remove(test_filename)
+        else:
+            print("Load failed.")
+    else:
+        print("Save failed.")
     # Example usage:
     # char = create_character("TestHero", "Warrior")
     # display_character(char)
