@@ -96,7 +96,7 @@ def load_character(filename):
     lines = f.read().splitlines()
     f.close()
 
-    if len(line) < 7:
+    if len(lines) < 7:
         return None
 
     char_data = {}
@@ -105,7 +105,7 @@ def load_character(filename):
         "Strength": "strength", "Magic": "magic", "Health": "health", "Gold": "gold"
     }
 
-    for line in line:
+    for line in lines:
         if ":" in line:
             key_label, value = line.split(":", 1)
             key_label = key_label.strip()
