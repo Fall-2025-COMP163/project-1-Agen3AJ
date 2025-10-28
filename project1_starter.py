@@ -73,6 +73,12 @@ def save_character(character, filename):
     Note: Without 'try/except', this function cannot gracefully handle errors
     like permission denied or invalid path. It assumes success on execution.
     """
+    # Check if directory exists before writing
+    directory = os.path.dirname(filename)
+    if directory and not os.path.exists(directory):
+        print("Error: Invalid save directory.")
+        return False  # <- prevents FileNotFoundError
+
     save_format = [
         f"Character Name: {character['name']}",
         f"Class: {character['class']}",
@@ -82,7 +88,7 @@ def save_character(character, filename):
         f"Health: {character['health']}",
         f"Gold: {character['gold']}",
     ]
-    
+
     f = open(filename, 'w')
     f.write('\n'.join(save_format))
     f.close()
