@@ -143,7 +143,7 @@ def display_character(character):
     print(f"Magic: {character.get('magic', 'N/A')}")
     print(f"Health: {character.get('health', 'N/A')}")
     print(f"Gold: {character.get('gold', 'N/A')}")
-    print("=======================\n")
+    print("=======================")
 
 def level_up(character):
     """
@@ -159,6 +159,7 @@ def level_up(character):
     character['magic'] = magic
     character['health'] = health
     character['gold'] += 50 
+    return character
 
 # Main program area (optional - for testing your functions
 if __name__ == "__main__":
